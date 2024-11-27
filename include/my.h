@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <stdlib.h>
+#include "struct.h"
 
 #ifndef MY_H
     #define MY_H
@@ -52,5 +53,6 @@ void flag_x2(va_list list);
 void flag_x(va_list list);
 void blank(va_list list);
 int flag_detector(const char *format, int i, va_list list);
-
+int header_bot(void);
+int header_top(void);
 #endif /*my.h*/

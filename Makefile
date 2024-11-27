@@ -9,7 +9,8 @@ pathdir=./src/lib
 
 NAME = lib
 
-SRC =
+SRC = ./src/header_top.c\
+	./src/header_bot.c\
 
 CFLAGS += -g -Wall -Werror -Wextra -W
 
@@ -51,7 +52,7 @@ LIB = $(pathdir)/my_compute_power_rec.c\
 	$(pathdir)/my_printf.c
 
 
-OBJ  	=	 $(ASSET:.c=.o)
+OBJ  	=	 $(SRC:.c=.o)
 
 OBJ_LIB =  $(LIB:.c=.o)
 
@@ -59,7 +60,7 @@ all: 	$(NAME)
 
 $(NAME):	$(OBJ) $(OBJ_LIB)
 		ar rcs $(NAME) $(OBJ)  $(OBJ_LIB)
-		gcc  main.c -o my_top -lncurses -Iinclude lib\
+		gcc -o my_top main.c -Iinclude -lncurses lib
 
 clean:
 		rm -f $(OBJ) $(OBJ_LIB)
