@@ -8,6 +8,7 @@
 #include <ncurses.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 #ifndef MY_STRUCT_H_
     #define MY_STRUCT_H_
@@ -16,6 +17,7 @@ typedef struct my_struct_t {
     WINDOW *boite;
     WINDOW *haut;
     WINDOW *bas;
-} my_struct_t;
+    time_t t;
+} windows_t;
 
 #endif /* !MY_STRUCT_H_ */

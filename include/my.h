@@ -54,5 +54,6 @@ void flag_x(va_list list);
 void blank(va_list list);
 int flag_detector(const char *format, int i, va_list list);
 int header_bot(void);
-int header_top(void);
+int header_top(windows_t *window);
+int write_date_to_file(windows_t *window, char *buffer, size_t buffer_size);
 #endif /*my.h*/

@@ -8,13 +8,23 @@
 #include <ncurses.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 #include "../include/my.h"
 
-int header_top(void)
+int write_date_to_file(windows_t *window, char *buffer, size_t buffer_size)
 {
-    attron(A_STANDOUT);
-    mvprintw(5, 0, " PID USER  PR NI VIRT RES SHR S %%CPU %%MEM TIME+ COMMAND ");
-    attroff(A_STANDOUT);
+    struct tm *tmp_time = localtime(&window->t);
 
+    time(&window->t);
+    strftime(buffer, buffer_size, "%H:%M:%S", tmp_time);
+    return 0;
+}
+
+int header_top(windows_t *window)
+{
+    char date_buffer[1000];
+
+    write_date_to_file(window, date_buffer, sizeof(date_buffer));
+    mvprintw(0, 0, "TOP - %s", date_buffer);
     return 0;
 }
