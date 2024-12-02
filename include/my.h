@@ -8,6 +8,9 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <stdlib.h>
+#include <ncurses.h>
+#include <string.h>
+#include <dirent.h>
 #include "struct.h"
 
 #ifndef MY_H
@@ -56,4 +59,6 @@ int flag_detector(const char *format, int i, va_list list);
 int header_bot(void);
 int header_top(windows_t *window);
 int write_date_to_file(windows_t *window, char *buffer, size_t buffer_size);
+int write_pid_file(void);
+int check_strisnum(char c);
 #endif /*my.h*/

@@ -25,6 +25,6 @@ int header_top(windows_t *window)
     char date_buffer[1000];
 
     write_date_to_file(window, date_buffer, sizeof(date_buffer));
-    mvprintw(0, 0, "TOP - %s", date_buffer);
+    mvprintw(0, 0, "top - %s", date_buffer);
     return 0;
 }
