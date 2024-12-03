@@ -8,7 +8,7 @@
 #include "my.h"
 #include "struct.h"
 
-int load_file(windows_t *window, float loadavg[])
+int load_file(windows_t *window, float loadavg[], int i)
 {
     write_pid_file();
     get_nb_user(window);
@@ -22,6 +22,7 @@ int main(int ch)
 {
     windows_t window;
     float loadavg[3];
+    int i;
 
     initscr();
     noecho();
@@ -29,7 +30,7 @@ int main(int ch)
     curs_set(0);
     while (1) {
         clear();
-        load_file(&window, loadavg);
+        load_file(&window, loadavg, i);
         refresh();
         napms(1000);
         timeout(0);

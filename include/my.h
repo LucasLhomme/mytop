@@ -65,5 +65,5 @@ int error_hand(windows_t *window);
 int check_strisnum(char c);
 int get_nb_user(windows_t *window);
 int get_my_loadavg(float *loadavg);
-int load_file(windows_t *window, float *loadavg);
+int load_file(windows_t *window, float loadavg[], int i);
 #endif /*my.h*/

@@ -12,16 +12,11 @@
 int write_pid_file(void)
 {
     struct dirent *entry;
-    int y = 6;
     DIR *dir = opendir("/proc/");
 
-    if (dir == NULL) {
-        mvprintw(6, 0, "tes nul");
-        return 84;
-    }
     for (entry = readdir(dir); entry != NULL; entry = readdir(dir)) {
         if (check_strisnum(entry->d_name[0]))
-            mvprintw(y++, 0, "%s", entry->d_name);
+            mvprintw(6, 0, "%s", entry->d_name);
     }
     closedir(dir);
     return 0;

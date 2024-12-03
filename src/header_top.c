@@ -50,10 +50,26 @@ int get_my_loadavg(float *loadavg)
     return 0;
 }
 
+int count_task(int i)
+{
+    struct dirent *entry;
+    DIR *dir = opendir("/proc/");
+    i = 0;
+
+    for (entry = readdir(dir); entry != NULL; entry = readdir(dir)) {
+        if (check_strisnum(entry->d_name[0])) {
+            i++;
+        }
+    }
+    closedir(dir);
+    return i;
+}
+
 void header_top(windows_t *window, float *loadavg)
 {
     char date_buffer[100];
     time_t now;
+    int task_count = count_task(0);
     struct tm *t;
 
     now = time(NULL);
@@ -63,4 +79,5 @@ void header_top(windows_t *window, float *loadavg)
     mvprintw(0, 15, " users %d,", window->user_count);
     mvprintw(0, 24, " load average: %.2f, %.2f, %.2f"
         , loadavg[0], loadavg[1], loadavg[2]);
+    mvprintw(1, 0, "Tasks: %d,", task_count);
 }
