@@ -14,9 +14,8 @@
     #define MY_STRUCT_H_
 
 typedef struct my_struct_t {
-    WINDOW *boite;
-    WINDOW *haut;
-    WINDOW *bas;
+    DIR *dir;
+    int user_count;
     time_t t;
 } windows_t;
 

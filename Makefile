@@ -12,9 +12,10 @@ NAME = lib
 SRC = ./src/header_top.c\
 	./src/header_bot.c\
 
-CFLAGS += -g -Wall -Werror -Wextra -W
+CFLAGS += -g -Wall -Werror -Wextra -W -Iinclude
 
-LIB = $(pathdir)/my_compute_power_rec.c\
+LIB =	$(pathdir)/check_strisnum.c\
+	$(pathdir)/my_compute_power_rec.c\
 	$(pathdir)/my_find_prime_sup.c\
 	$(pathdir)/my_getnbr.c\
 	$(pathdir)/my_is_prime.c\

@@ -11,6 +11,7 @@
 #include <ncurses.h>
 #include <string.h>
 #include <dirent.h>
+#include <time.h>
 #include "struct.h"
 
 #ifndef MY_H
@@ -57,8 +58,12 @@ void flag_x(va_list list);
 void blank(va_list list);
 int flag_detector(const char *format, int i, va_list list);
 int header_bot(void);
-int header_top(windows_t *window);
+void header_top(windows_t *window, float *loadavg);
 int write_date_to_file(windows_t *window, char *buffer, size_t buffer_size);
 int write_pid_file(void);
+int error_hand(windows_t *window);
 int check_strisnum(char c);
+int get_nb_user(windows_t *window);
+int get_my_loadavg(float *loadavg);
+int load_file(windows_t *window, float *loadavg);
 #endif /*my.h*/

@@ -5,34 +5,38 @@
 ** main for my top project
 */
 
-#include <ncurses.h>
-#include <stdlib.h>
-#include <string.h>
 #include "my.h"
 #include "struct.h"
 
-int main(void) {
+int load_file(windows_t *window, float loadavg[])
+{
+    write_pid_file();
+    get_nb_user(window);
+    get_my_loadavg(loadavg);
+    header_top(window, loadavg);
+    header_bot();
+    return 0;
+}
+
+int main(int ch)
+{
     windows_t window;
-    initscr();  // Initialise l'écran ncurses
-    noecho();   // Désactive l'affichage des touches tapées
-    cbreak();   // Désactive le buffering de ligne
+    float loadavg[3];
+
+    initscr();
+    noecho();
+    cbreak();
     curs_set(0);
-
-    while(1) {
-        clear();  // Efface l'écran avant d'afficher le nouveau message
-        header_top(&window);
-        header_bot();
-        write_pid_file();
-        refresh();  // Rafraîchit la fenêtre par défaut (stdscr) afin d'afficher le message
-
-        // Introduit un délai de 1 seconde
+    while (1) {
+        clear();
+        load_file(&window, loadavg);
+        refresh();
         napms(1000);
-
-        timeout(0);  // Ne bloque pas l'attente de getch()
-        int ch = getch();
-        if(ch == 'q')  // Quitte la boucle si la touche 'q' est pressée
+        timeout(0);
+        ch = getch();
+        if (ch == 'q')
             break;
     }
-    endwin();  // Restaure les paramètres du terminal avant la fin du programme
+    endwin();
     return 0;
-}   
+}
