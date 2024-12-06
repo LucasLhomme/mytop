@@ -7,8 +7,6 @@
 
 #include "my.h"
 #include "struct.h"
-#include <ncurses.h>
-#include <time.h>
 
 int write_hours(windows_t *window, char *buffer, size_t buffer_size)
 {
