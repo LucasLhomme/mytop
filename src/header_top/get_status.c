@@ -21,6 +21,7 @@ void update_counts(count_file_t *count, char *state)
             count->sleep_count++;
             break;
         case 'T':
+        case 't':
             count->stopped_count++;
             break;
         case 'Z':
@@ -44,6 +45,8 @@ int process_file(const char *path, count_file_t *count)
     FILE *status_file = fopen(path, "r");
     char line[256];
 
+    if (status_file == NULL)
+        return 84;
     while (fgets(line, sizeof(line), status_file) != NULL) {
         if (strncmp(line, "State:", 6) == 0) {
             parse_state_line(line, count);
@@ -57,12 +60,12 @@ int process_file(const char *path, count_file_t *count)
 int process_directory(DIR *proc_dir, count_file_t *count)
 {
     struct dirent *entry;
-    char path[512];
+    char *path = malloc(sizeof(path)* 2 + 1);
 
     for (entry = readdir(proc_dir); entry != NULL; entry = readdir(proc_dir)) {
         if (!check_strisnum(entry->d_name[0]))
             continue;
-        snprintf(path, sizeof(path), "/proc/%s/status", entry->d_name);
+        snprintf(path, (*path), "/proc/%s/status", entry->d_name);
         process_file(path, count);
     }
     return (0);
@@ -70,14 +73,15 @@ int process_directory(DIR *proc_dir, count_file_t *count)
 
 int check_status(void)
 {
-    DIR *proc_dir = opendir("/proc");
     count_file_t count = {0, 0, 0, 0, 0};
+    DIR *proc_dir = opendir("/proc");
 
     process_directory(proc_dir, &count);
     closedir(proc_dir);
-    mvprintw(1, 18, "running %d, %d sleeping, %d stopped, %d zombies",
-        count.running_count, count.sleep_count,
-            count.zombie_count, count.stopped_count);
+    mvprintw(1, 18, "running %d,", count.running_count);
+    mvprintw(1, 30, "sleeping %d,", count.sleep_count);
+    mvprintw(1, 47, "stopped %d,", count.stopped_count);
+    mvprintw(1, 59, "zombies %d", count.zombie_count);
     refresh();
     return (0);
 }

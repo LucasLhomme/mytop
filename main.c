@@ -19,11 +19,9 @@ int load_file(windows_t *window, float loadavg[], count_file_t *count)
     return 0;
 }
 
-int main(int ch)
+int main(int ch, count_file_t *count, char *state)
 {
     windows_t window;
-    count_file_t *count;
-    char *state;
     float loadavg[3];
 
     initscr();

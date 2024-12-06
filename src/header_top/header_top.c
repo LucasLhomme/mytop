@@ -12,8 +12,8 @@ int count_task(int i)
 {
     struct dirent *entry;
     DIR *dir = opendir("/proc/");
-    i = 0;
 
+    i = 0;
     for (entry = readdir(dir); entry != NULL; entry = readdir(dir)) {
         if (check_strisnum(entry->d_name[0]))
             i++;
@@ -35,4 +35,3 @@ void header_top(windows_t *window)
     mvprintw(1, 0, "Tasks: %d total,", task_count);
     refresh();
 }
-
