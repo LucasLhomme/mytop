@@ -78,10 +78,10 @@ int check_status(void)
 
     process_directory(proc_dir, &count);
     closedir(proc_dir);
-    mvprintw(1, 18, "running %d,", count.running_count);
-    mvprintw(1, 30, "sleeping %d,", count.sleep_count);
-    mvprintw(1, 47, "stopped %d,", count.stopped_count);
-    mvprintw(1, 59, "zombies %d", count.zombie_count);
+    mvprintw(1, 18, "%d running,", count.running_count);
+    mvprintw(1, 30, "%d sleeping,", count.sleep_count);
+    mvprintw(1, 47, "%d stopped,", count.stopped_count);
+    mvprintw(1, 59, "%d zombies", count.zombie_count);
     refresh();
     return (0);
 }
