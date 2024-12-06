@@ -8,12 +8,13 @@
 #include "my.h"
 #include "struct.h"
 
-int load_file(windows_t *window, float loadavg[], int i)
+int load_file(windows_t *window, float loadavg[], count_file_t *count)
 {
     write_pid_file();
     get_nb_user(window);
     get_my_loadavg(loadavg);
-    header_top(window, loadavg);
+    check_status();
+    header_top(window);
     header_bot();
     return 0;
 }
@@ -21,8 +22,9 @@ int load_file(windows_t *window, float loadavg[], int i)
 int main(int ch)
 {
     windows_t window;
+    count_file_t *count;
+    char *state;
     float loadavg[3];
-    int i;
 
     initscr();
     noecho();
@@ -30,7 +32,7 @@ int main(int ch)
     curs_set(0);
     while (1) {
         clear();
-        load_file(&window, loadavg, i);
+        load_file(&window, loadavg, &count);
         refresh();
         napms(1000);
         timeout(0);

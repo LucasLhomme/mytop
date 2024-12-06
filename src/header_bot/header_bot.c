@@ -12,8 +12,8 @@
 int write_pid_file(void)
 {
     struct dirent *entry;
-    int y = 6;
     DIR *dir = opendir("/proc/");
+    int y = 6;
 
     if (dir == NULL)
         return 84;

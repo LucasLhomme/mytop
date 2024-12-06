@@ -9,8 +9,12 @@ pathdir=./src/lib
 
 NAME = lib
 
-SRC = ./src/header_top.c\
-	./src/header_bot.c\
+SRC = ./src/header_top/header_top.c\
+	./src/header_top/get_hours.c\
+	./src/header_top/get_nb_user.c\
+	./src/header_top/get_my_loadavg.c\
+	./src/header_top/get_status.c\
+	./src/header_bot/header_bot.c\
 
 CFLAGS += -g -Wall -Werror -Wextra -W -Iinclude
 

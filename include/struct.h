@@ -19,4 +19,13 @@ typedef struct my_struct_t {
     time_t t;
 } windows_t;
 
+typedef struct count_file_t {
+    int check_char;
+    int running_count;
+    int sleep_count;
+    int zombie_count;
+    int stopped_count;
+} count_file_t;
+
+
 #endif /* !MY_STRUCT_H_ */
