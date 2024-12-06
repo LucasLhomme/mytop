@@ -10,8 +10,6 @@
 
 void update_counts(count_file_t *count, char *state)
 {
-    if (state == NULL || state[0] == '\0')
-        return;
     switch (state[0]) {
         case 'R':
             count->running_count++;
@@ -46,8 +44,6 @@ int process_file(const char *path, count_file_t *count)
     FILE *status_file = fopen(path, "r");
     char line[256];
 
-    if (status_file == NULL)
-        return (1);
     while (fgets(line, sizeof(line), status_file) != NULL) {
         if (strncmp(line, "State:", 6) == 0) {
             parse_state_line(line, count);
@@ -63,8 +59,6 @@ int process_directory(DIR *proc_dir, count_file_t *count)
     struct dirent *entry;
     char path[512];
 
-    if (proc_dir == NULL)
-        return (1);
     for (entry = readdir(proc_dir); entry != NULL; entry = readdir(proc_dir)) {
         if (!check_strisnum(entry->d_name[0]))
             continue;
@@ -79,10 +73,6 @@ int check_status(void)
     DIR *proc_dir = opendir("/proc");
     count_file_t count = {0, 0, 0, 0, 0};
 
-    if (proc_dir == NULL) {
-        perror("Échec de l'ouverture du répertoire /proc");
-        return (84);
-    }
     process_directory(proc_dir, &count);
     closedir(proc_dir);
     mvprintw(1, 18, "running %d, %d sleeping, %d stopped, %d zombies",

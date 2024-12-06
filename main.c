@@ -32,7 +32,7 @@ int main(int ch)
     curs_set(0);
     while (1) {
         clear();
-        load_file(&window, loadavg, &count);
+        load_file(&window, loadavg, count);
         refresh();
         napms(1000);
         timeout(0);
