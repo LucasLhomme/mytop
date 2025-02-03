@@ -62,6 +62,8 @@ int process_directory(DIR *proc_dir, count_file_t *count)
     struct dirent *entry;
     char *path = malloc(sizeof(path)* 2 + 1);
 
+    if (path == NULL)
+        return 84;
     for (entry = readdir(proc_dir); entry != NULL; entry = readdir(proc_dir)) {
         if (!check_strisnum(entry->d_name[0]))
             continue;
