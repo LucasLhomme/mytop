@@ -7,6 +7,7 @@
 
 #include "my.h"
 #include "struct.h"
+#include <ctype.h>
 
 void update_counts(count_file_t *count, char *state)
 {
@@ -57,20 +58,16 @@ int process_file(const char *path, count_file_t *count)
     return (0);
 }
 
-int process_directory(DIR *proc_dir, count_file_t *count)
-{
+void process_directory(DIR *proc_dir, count_file_t *count) {
     struct dirent *entry;
-    char *path = malloc(sizeof(path)* 2 + 1);
+    char path[512];
 
-    if (path == NULL)
-        return 84;
-    for (entry = readdir(proc_dir); entry != NULL; entry = readdir(proc_dir)) {
-        if (!check_strisnum(entry->d_name[0]))
+    while ((entry = readdir(proc_dir)) != NULL) {
+        if (!isdigit(entry->d_name[0]))
             continue;
-        snprintf(path, (*path), "/proc/%s/status", entry->d_name);
+        snprintf(path, sizeof(path), "/proc/%s/status", entry->d_name);
         process_file(path, count);
     }
-    return (0);
 }
 
 int check_status(void)
@@ -85,5 +82,5 @@ int check_status(void)
     mvprintw(1, 47, "%d stopped,", count.stopped_count);
     mvprintw(1, 59, "%d zombies", count.zombie_count);
     refresh();
-    return (0);
+    return 0;
 }
