@@ -58,11 +58,12 @@ int process_file(const char *path, count_file_t *count)
     return (0);
 }
 
-void process_directory(DIR *proc_dir, count_file_t *count) {
+void process_directory(DIR *proc_dir, count_file_t *count)
+{
     struct dirent *entry;
     char path[512];
 
-    while ((entry = readdir(proc_dir)) != NULL) {
+    for (entry = readdir(proc_dir); entry != NULL; entry = readdir(proc_dir)) {
         if (!isdigit(entry->d_name[0]))
             continue;
         snprintf(path, sizeof(path), "/proc/%s/status", entry->d_name);

@@ -28,8 +28,8 @@ int write_pid_file(void)
 int header_bot(void)
 {
     attron(A_STANDOUT);
-    mvprintw(5, 0, "PID USER  PR NI VIRT RES SHR S\
-    %%CPU %%MEM TIME+ COMMAND ");
+    mvprintw(5, 0, "PID USER  PR NI VIRT RES SHR S"
+    "%%CPU %%MEM TIME+ COMMAND ");
     attroff(A_STANDOUT);
     return 0;
 }
