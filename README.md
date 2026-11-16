@@ -4,7 +4,7 @@
 [![Library: NCurses](https://img.shields.io/badge/Library-NCurses-yellow.svg)](https://invisible-island.net/ncurses/)
 [![Module: B-PSU-100](https://img.shields.io/badge/Epitech-B--PSU--100-blue.svg)](https://www.epitech.eu/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Academic Year: 2024-2025](https://img.shields.io/badge/Academic%20Year-2024--2025%20(Tek1)-blueviolet.svg)](#)
+[![Epitech: Tek1](https://img.shields.io/badge/Epitech-Tek1-005696.svg)](https://www.epitech.eu/)
 
 > **MyTop is an interactive terminal task monitor inspired by `top(1)`**, tracking Linux system activity and process statistics in real time.
 
